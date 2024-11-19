@@ -1,6 +1,7 @@
 import * as url from "url";
-import RedisBroker from "./redis";
+
 import AMQPBroker from "./amqp";
+import RedisBroker from "./redis";
 
 export interface CeleryBroker {
   isReady: () => Promise<any>;

@@ -1,10 +1,10 @@
+import { CeleryBackend, newCeleryBackend } from "../backends";
+import { CeleryBroker, newCeleryBroker } from "../kombu/brokers";
 /**
  * writes here Base Parent class of Celery client and worker
  * @author SunMyeong Lee <actumn814@gmail.com>
  */
 import { CeleryConf, defaultConf } from "./conf";
-import { newCeleryBroker, CeleryBroker } from "../kombu/brokers";
-import { newCeleryBackend, CeleryBackend } from "../backends";
 
 export default class Base {
   private _backend: CeleryBackend;
@@ -17,11 +17,12 @@ export default class Base {
    *
    * @constructor Base
    */
-  constructor(broker: string, backend: string, queue = "celery") {
+  constructor(broker: string, backend: string, queue = "celery", exchange = "") {
     this.conf = defaultConf();
     this.conf.CELERY_BROKER = broker;
     this.conf.CELERY_BACKEND = backend;
     this.conf.CELERY_QUEUE = queue;
+    this.conf.CELERY_EXCHANGE = exchange;
   }
 
   get broker(): CeleryBroker {

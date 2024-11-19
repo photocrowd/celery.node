@@ -4,6 +4,7 @@ export interface CeleryConf {
   CELERY_BACKEND: string;
   CELERY_BACKEND_OPTIONS: object;
   CELERY_QUEUE: string;
+  CELERY_EXCHANGE: string;
   TASK_PROTOCOL: number;
 }
 
@@ -13,6 +14,7 @@ const DEFAULT_CELERY_CONF: CeleryConf = {
   CELERY_BACKEND: "amqp://",
   CELERY_BACKEND_OPTIONS: {},
   CELERY_QUEUE: "celery",
+  CELERY_EXCHANGE: "",
   TASK_PROTOCOL: 2
 };
 

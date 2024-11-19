@@ -1,7 +1,7 @@
-import { v4 } from "uuid";
+import { AsyncResult } from "./result";
 import Base from "./base";
 import Task from "./task";
-import { AsyncResult } from "./result";
+import { v4 } from "uuid";
 
 class TaskMessage {
   constructor(
@@ -25,14 +25,13 @@ export default class Client extends Base {
   public sendTaskMessage(taskName: string, message: TaskMessage): void {
     const { headers, properties, body /*, sentEvent */ } = message;
 
-    const exchange = "";
     // exchangeType = 'direct';
     // const serializer = 'json';
 
     this.isReady().then(() =>
       this.broker.publish(
         body,
-        exchange,
+        this.conf.CELERY_EXCHANGE,
         this.conf.CELERY_QUEUE,
         headers,
         properties
