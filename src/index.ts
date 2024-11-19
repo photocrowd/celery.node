@@ -11,8 +11,9 @@ export function createClient(
   broker = "amqp://",
   backend = "amqp://",
   queue = "celery"
+  exchange = ""
 ): Client {
-  return new Client(broker, backend, queue);
+  return new Client(broker, backend, queue, exchange);
 }
 
 /**
